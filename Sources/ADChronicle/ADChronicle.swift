@@ -6,8 +6,16 @@ public typealias ADLogger = OSLog
 @available(OSX 10.14, *)
 @available(iOS 12.0, *)
 public class ADChronicle {
+    private static var loggers = [Int: ADLogger]()
+    
     public static func logger<Subject>(subsystem: String, category: Subject) -> ADLogger {
-        return OSLog(subsystem: subsystem, category: category)
+        let hash = String(describing: category).hashValue
+        
+        if let logger = loggers[hash] { return logger }
+        
+        let logger = ADLogger(subsystem: subsystem, category: String(describing: category))
+        loggers[hash] = logger
+        return logger
     }
     
     public static func log(_ error: Error,
@@ -22,7 +30,7 @@ public class ADChronicle {
                            logger: ADLogger,
                            function: String = #function,
                            logType: OSLogType = .info) {
-        let message = message + "\n\n" + "[User Info]:" + "\n" + String(describing: userInfo ?? [:])
+        let message = message + "\n\n" + "User Info:" + "\n" + String(describing: userInfo ?? [:])
         
         #if DEBUG
         os_log(logType,

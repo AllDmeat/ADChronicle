@@ -1,6 +1,7 @@
 import Foundation
 import os
 
+@available(OSX 10.14, *)
 @available(iOS 12.0, *)
 public class ADChronicle {
     public static func logger<Subject>(subsystem: String, category: Subject) -> OSLog {

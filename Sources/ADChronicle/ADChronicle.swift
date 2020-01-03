@@ -1,7 +1,7 @@
 import Foundation
 import os
 
-typealias ADLogger = OSLog
+public typealias ADLogger = OSLog
 
 @available(OSX 10.14, *)
 @available(iOS 12.0, *)

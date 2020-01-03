@@ -6,7 +6,7 @@ public typealias ADLogger = OSLog
 @available(OSX 10.14, *)
 @available(iOS 12.0, *)
 public class ADChronicle {
-    private static var loggers = [Int: ADLogger]()
+    internal static var loggers = [Int: ADLogger]()
     
     public static func logger<Subject>(subsystem: String, category: Subject) -> ADLogger {
         let hash = String(describing: category).hashValue

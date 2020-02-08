@@ -39,6 +39,7 @@ public class ADChronicle {
 
 // MARK: - os_log
 @available(OSX 10.14, *)
+@available(iOS 12.0, *)
 extension ADChronicle {
     private static func log(_ message: String,
                             userInfo: CustomDebugStringConvertible?,
@@ -71,6 +72,7 @@ extension ADChronicle {
 
 // MARK: Loggers
 @available(OSX 10.14, *)
+@available(iOS 12.0, *)
 internal extension ADChronicle {
     static func filename(from file: StaticString) -> String {
         return URL(fileURLWithPath: file.description).deletingPathExtension().lastPathComponent

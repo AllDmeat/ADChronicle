@@ -5,8 +5,7 @@ import XCTest
 @available(iOS 12.0, *)
 final class ADChronicleTests: XCTestCase {
     func test_loggerIsCached() {
-        let logger = ADChronicle.logger(subsystem: Bundle.main.bundleIdentifier!,
-                                        category: String(describing: type(of: self)))
+        let logger = ADChronicle.logger(for: #file)
         
         XCTAssertTrue(ADChronicle.loggers.values.contains(logger))
     }

@@ -49,7 +49,7 @@ extension ADChronicle {
                             logLevel: ADLogType) {
         let message = message + "\n\n" + "[User Info]:" + "\n" + string(from: userInfo)
         
-        #if SHOULD_USE_DEBUG
+        #if DEBUG
         os_log(logLevel,
                log: logger,
                "%{public}@\n%{public}@", function.description, message)
@@ -59,7 +59,12 @@ extension ADChronicle {
                "%{public}@\n%{private}@", function.description, message)
         #endif
     }
-    
+}
+
+// MARK: - User Info
+@available(OSX 10.14, *)
+@available(iOS 12.0, *)
+extension ADChronicle {
     private static func string(from userInfo: CustomDebugStringConvertible?) -> String {
         if let dict = userInfo as? [String: Any] {
             return string(from: dict)
@@ -67,7 +72,15 @@ extension ADChronicle {
             return String(describing: userInfo)
         }
     }
-
+    
+    private static func string(from parameters: [String: Any]) -> String {
+        guard JSONSerialization.isValidJSONObject(parameters),
+            let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted),
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            else { return "" }
+        
+        return jsonString
+    }
 }
 
 // MARK: Loggers

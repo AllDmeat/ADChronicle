@@ -2,7 +2,11 @@ import Foundation
 import os
 
 public class ADChronicle {
-    public static var logServices = [ADLogServiceProtocol]()
+    private static var logServices = [ADLogServiceProtocol]()
+    
+    public static func configure(with logServices: [ADLogServiceProtocol]) {
+        self.logServices = logServices
+    }
     
     public static func log(_ error: Error,
                            file: StaticString = #file,

@@ -8,6 +8,8 @@
 import Foundation
 import os
 
+@available(iOS 12.0, *)
+@available(OSX 10.14, *)
 public protocol ADLogServiceProtocol {
     func log(_ error: Error,
              file: StaticString,

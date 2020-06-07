@@ -1,7 +1,7 @@
 import Foundation
 import os
 
-@available(iOS 10.0, *)
+@available(iOS 12.0, *)
 @available(OSX 10.14, *)
 public class ADChronicle {
     private static var logServices = [ADLogServiceProtocol]()

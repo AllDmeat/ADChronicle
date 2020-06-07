@@ -2,7 +2,7 @@ import Foundation
 import os
 
 @available(iOS 10.0, *)
-@available(OSX 10.12, *)
+@available(OSX 10.14, *)
 public class ADChronicle {
     private static var logServices = [ADLogServiceProtocol]()
     
@@ -24,14 +24,16 @@ public class ADChronicle {
     
     public static func log(_ message: String,
                            userInfo: CustomDebugStringConvertible? = nil,
-                           logLevel: OSLogType = .default,
+                           logType: OSLogType = .default,
+                           signpostType: OSSignpostType = .event,
                            file: StaticString = #file,
                            function: StaticString = #function,
                            line: UInt = #line) {
         for logService in logServices {
             logService.log(message,
                            userInfo: userInfo,
-                           logLevel: logLevel,
+                           logType: logType,
+                           signpostType: signpostType,
                            file: file,
                            function: function,
                            line: line)

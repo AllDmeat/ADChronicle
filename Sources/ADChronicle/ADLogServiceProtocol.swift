@@ -16,7 +16,8 @@ public protocol ADLogServiceProtocol {
     
     func log(_ message: String,
              userInfo: CustomDebugStringConvertible?,
-             logLevel: OSLogType,
+             logType: OSLogType,
+             signpostType: OSSignpostType,
              file: StaticString,
              function: StaticString,
              line: UInt)

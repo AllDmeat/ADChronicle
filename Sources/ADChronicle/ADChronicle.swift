@@ -1,6 +1,8 @@
 import Foundation
 import os
 
+@available(iOS 10.0, *)
+@available(OSX 10.12, *)
 public class ADChronicle {
     private static var logServices = [ADLogServiceProtocol]()
     
@@ -22,7 +24,7 @@ public class ADChronicle {
     
     public static func log(_ message: String,
                            userInfo: CustomDebugStringConvertible? = nil,
-                           logLevel: ADLogLevel = .default,
+                           logLevel: OSLogType = .default,
                            file: StaticString = #file,
                            function: StaticString = #function,
                            line: UInt = #line) {

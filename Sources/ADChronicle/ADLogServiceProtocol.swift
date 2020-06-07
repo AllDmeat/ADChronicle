@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os
 
 public protocol ADLogServiceProtocol {
     func log(_ error: Error,
@@ -15,12 +16,8 @@ public protocol ADLogServiceProtocol {
     
     func log(_ message: String,
              userInfo: CustomDebugStringConvertible?,
-             logLevel: ADLogLevel,
+             logLevel: OSLogType,
              file: StaticString,
              function: StaticString,
              line: UInt)
-}
-
-public enum ADLogLevel {
-    case `default`, debug, info, warning, error
 }
